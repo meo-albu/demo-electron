@@ -40,6 +40,8 @@ const openSettings = () => {
     width: 600,
     height: 400,
     frame: false,
+    resizable: false,
+    alwaysOnTop: true
   })
 
   if (isProd) {
@@ -70,8 +72,14 @@ const openSettings = () => {
   Menu.setApplicationMenu(mainMenu)
 })()
 
-ipcMain.on('close-app', () => {
+ipcMain.on('close-settings', () => {
   windows.settingsWindow.close()
+})
+ipcMain.on('full-settings', () => {
+  windows.settingsWindow.fullScreen()
+})
+ipcMain.on('minimize-settings', () => {
+  windows.settingsWindow.minimize()
 })
 
 app.on('window-all-closed', () => {
