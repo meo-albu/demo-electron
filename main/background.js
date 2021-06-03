@@ -1,4 +1,4 @@
-import { app } from 'electron';
+import { app, Menu, ipcMain } from 'electron';
 import serve from 'electron-serve';
 import { createWindow } from './helpers';
 
@@ -10,23 +10,70 @@ if (isProd) {
   app.setPath('userData', `${app.getPath('userData')} (development)`);
 }
 
-(async () => {
-  await app.whenReady();
+const windows = {
+  mainWindow: null,
+  settingsWindow: null
+}
 
-  const mainWindow = createWindow('main', {
-    width: 1000,
-    height: 600,
-  });
+const menuItems = [
+  {
+    label:'File',
+    submenu: [
+      {
+        label: 'Settings',
+        click: () => openSettings()
+      },
+      {
+        label: 'Close',
+        click: () => app.quit()
+      },
+      {
+        label: 'Dev Menu',
+        click: () => windows.mainWindow.webContents.openDevTools(),
+      },
+    ]
+  }
+]
+
+const openSettings = () => {
+  windows.settingsWindow = createWindow('settings', {
+    width: 600,
+    height: 400,
+    frame: false,
+  })
 
   if (isProd) {
-    await mainWindow.loadURL('app://./home.html');
+    windows.settingsWindow.loadURL('app://./settings.html');
   } else {
     const port = process.argv[2];
-    await mainWindow.loadURL(`http://localhost:${port}/home`);
-    mainWindow.webContents.openDevTools();
+    windows.settingsWindow.loadURL(`http://localhost:${port}/settings`);
   }
-})();
+}
+
+(async () => {
+  await app.whenReady()
+
+  windows.mainWindow = createWindow('main', {
+    width: 1000,
+    height: 600,
+  })
+
+  if (isProd) {
+    await windows.mainWindow.loadURL('app://./home.html');
+  } else {
+    const port = process.argv[2];
+    await windows.mainWindow.loadURL(`http://localhost:${port}/home`);
+  }
+
+  const mainMenu = Menu.buildFromTemplate(menuItems)
+
+  Menu.setApplicationMenu(mainMenu)
+})()
+
+ipcMain.on('close-app', () => {
+  windows.settingsWindow.close()
+})
 
 app.on('window-all-closed', () => {
-  app.quit();
-});
+  app.quit()
+})
