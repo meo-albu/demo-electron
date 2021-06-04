@@ -9,3 +9,11 @@
 .title-bar button {
   -webkit-app-region: no-drag;
 }
+
+::-webkit-scrollbar {
+  @apply w-2
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-indigo-800 rounded-full
+}
