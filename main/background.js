@@ -58,6 +58,7 @@ const openSettings = () => {
   windows.mainWindow = createWindow('main', {
     width: 1000,
     height: 600,
+    frame: false,
   })
 
   if (isProd) {
@@ -75,11 +76,11 @@ const openSettings = () => {
 ipcMain.on('close-settings', () => {
   windows.settingsWindow.close()
 })
-ipcMain.on('full-settings', () => {
-  windows.settingsWindow.fullScreen()
+ipcMain.on('close-app', () => {
+  app.quit()
 })
-ipcMain.on('minimize-settings', () => {
-  windows.settingsWindow.minimize()
+ipcMain.on('minimize-app', () => {
+  app.minimize()
 })
 
 app.on('window-all-closed', () => {
