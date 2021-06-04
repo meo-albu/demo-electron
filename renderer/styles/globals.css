@@ -17,3 +17,7 @@
 ::-webkit-scrollbar-thumb {
   @apply bg-indigo-800 rounded-full
 }
+
+::selection {
+  @apply bg-indigo-500 text-white
+}

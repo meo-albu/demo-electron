@@ -22,7 +22,7 @@ function Home() {
         </button>
       </TitleBar>
 
-      <div className='overflow-hidden flex flex-col flex-grow bg-gray-900'>
+      <div className='overflow-y-hidden flex flex-col flex-grow bg-gray-900'>
         <div className='p-2 px-6 border-b border-gray-600 flex items-center justify-between'>
           <button className='text-white focus:outline-none' onClick={() => setOpen(prev => !prev)}>
             {
@@ -39,7 +39,7 @@ function Home() {
           <input className='px-4 py-1 bg-transparent border border-gray-800 focus:border-gray-600 focus:outline-none w-1/3' placeholder='Search' />
         </div>
 
-        <div className='overflow-hidden flex h-full'>
+        <div className='overflow-y-hidden flex h-full'>
           <Sidebar open={open} />
           <div className='flex-grow flex'>
             {
@@ -77,8 +77,28 @@ function Home() {
                             if(activeMail === index) {
                               return (
                                 <div key={index} className='flex flex-col h-full'>
-                                  <div className='p-4 border-b border-gray-700'>
-                                    {item.message.title}
+                                  <div className='p-4 border-b flex justify-between border-gray-700'>
+                                    <div>
+                                      <h4 className='text-lg font-medium mb-3'>{item.message.title}</h4>
+                                      <p className='text-xs'><span className='opacity-50'>from:</span> {item.name}</p>
+                                    </div>
+                                    <div>
+                                      <button className='p-2 hover:bg-gray-800 focus:outline-none'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
+                                        </svg>
+                                      </button>
+                                      <button className='p-2 hover:bg-gray-800 focus:outline-none'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                        </svg>
+                                      </button>
+                                      <button className='p-2 hover:bg-gray-800 focus:outline-none'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                        </svg>
+                                      </button>
+                                    </div>
                                   </div>
                                   <div className='p-4 overflow-y-scroll flex-grow'>
                                     <Message text={item.message.message} index={index} list={mail.title} />

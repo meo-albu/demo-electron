@@ -1,7 +1,8 @@
 import { Transition } from '@headlessui/react'
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setActiveMail, setMailList } from '../../store/actions/mailActions'
+import Modal from '../Modal/Modal'
 
 export default function Sidebar({
     open
@@ -9,6 +10,8 @@ export default function Sidebar({
 
   const dispatch = useDispatch()
   const {mails} = useSelector(state => state.mailReducer)
+
+  const [modal, setModal] = useState(false)
 
   return (
     <Transition
@@ -23,7 +26,9 @@ export default function Sidebar({
     >
       <div className='w-28 bg-gray-800 bg-opacity-20 h-full border-r border-gray-800'>
         <ul className='text-xs space-y-3'>
-          <li className='p-2 px-3 mb-6 bg-indigo-700 bg-opacity-80 hover:bg-opacity-60 cursor-pointer flex items-center space-x-2'>
+          <li
+            onClick={() => setModal(true)} 
+            className='p-2 px-3 mb-6 bg-indigo-700 bg-opacity-80 hover:bg-opacity-60 cursor-pointer flex items-center space-x-2'>
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
             </svg>
@@ -47,6 +52,10 @@ export default function Sidebar({
             })
           }
         </ul>
+        <div className='fixed right-0 bottom-0'>
+          <Modal open={modal} onClose={setModal} />
+
+        </div>
       </div>
     </Transition>
   )
