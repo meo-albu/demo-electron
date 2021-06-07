@@ -46,8 +46,20 @@ export default function Modal({
             <div className='relative'>
               <input className='p-2 pl-3 focus:outline-none bg-transparent w-full border-b border-gray-800' placeholder="Subject" />
             </div>
-            <div contentEditable className='flex-grow overflow-y-scroll w-full  resize-none p-2 pl-3 focus:outline-none '>
+            <div
+              contentEditable
+              className='flex-grow overflow-y-scroll w-full bg-transparent resize-none p-2 pl-3 focus:outline-none '>
+            </div>
+            <div className='flex font-serif px-2 pb-2'>
+              <div className='p-1 hover:bg-gray-800 w-6 cursor-pointer text-center font-bold'>B</div>
+              <div className='p-1 hover:bg-gray-800 w-6 cursor-pointer text-center font-bold italic'>I</div>
+              <div className='p-1 hover:bg-gray-800 w-6 cursor-pointer text-center font-bold underline'>U</div>
 
+              <button className='ml-auto'>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform rotate-90" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+                </svg>
+              </button>
             </div>
           </form>
         </div>
