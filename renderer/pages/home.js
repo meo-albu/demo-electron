@@ -1,10 +1,10 @@
-import { ipcRenderer } from 'electron';
+import { ipcRenderer } from 'electron'
 import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux';
-import Message from '../components/Message/Message';
-import Sidebar from '../components/Sidebar/Sidebar';
-import TitleBar from '../components/TitleBar/TitleBar';
-import { setActiveMail } from '../store/actions/mailActions';
+import { useSelector, useDispatch } from 'react-redux'
+import Message from '../components/Message/Message'
+import Sidebar from '../components/Sidebar/Sidebar'
+import TitleBar from '../components/TitleBar/TitleBar'
+import { setActiveMail } from '../store/actions/mailActions'
 
 function Home() {
   const [open, setOpen] = useState(true)

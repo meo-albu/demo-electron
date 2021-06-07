@@ -35,6 +35,8 @@ const menuItems = [
   }
 ]
 
+const mainMenu = Menu.buildFromTemplate(menuItems)
+
 const openSettings = () => {
   windows.settingsWindow = createWindow('settings', {
     width: 600,
@@ -58,7 +60,7 @@ const openSettings = () => {
   windows.mainWindow = createWindow('main', {
     width: 1000,
     height: 600,
-    frame: false,
+    frame: false
   })
 
   if (isProd) {
@@ -68,8 +70,6 @@ const openSettings = () => {
     await windows.mainWindow.loadURL(`http://localhost:${port}/home`);
     windows.mainWindow.webContents.openDevTools()
   }
-
-  const mainMenu = Menu.buildFromTemplate(menuItems)
 
   Menu.setApplicationMenu(mainMenu)
 })()
@@ -89,6 +89,15 @@ ipcMain.on('maximize-app', () => {
   } else {
     windows.mainWindow.maximize()
   }
+})
+
+ipcMain.on('client-ready', (event) => {
+  event.sender.send('menu', null, JSON.stringify(Menu))
+  mainMenu.popup({
+    window: windows.mainWindow,
+    x: 18,
+    y: 18,
+  })
 })
 
 app.on('window-all-closed', () => {
