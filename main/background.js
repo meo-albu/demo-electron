@@ -81,7 +81,14 @@ ipcMain.on('close-app', () => {
   app.quit()
 })
 ipcMain.on('minimize-app', () => {
-  app.minimize()
+  windows.mainWindow.minimize()
+})
+ipcMain.on('maximize-app', () => {
+  if(windows.mainWindow.isMaximized()) {
+    windows.mainWindow.unmaximize()
+  } else {
+    windows.mainWindow.maximize()
+  }
 })
 
 app.on('window-all-closed', () => {
