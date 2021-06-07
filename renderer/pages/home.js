@@ -52,8 +52,10 @@ function Home() {
         </div>
 
         <div className='overflow-y-hidden flex h-full'>
-          <Sidebar open={open} />
-          <div className='flex-grow flex'>
+          <div className={`${open ? 'w-28' : 'w-0'} transition-all duration-[355ms]`}>
+            <Sidebar open={open} />
+          </div>
+          <div className={`flex`}>
             {
               mails.map((mail, index) => {
                 if(mail.title.toLowerCase() === active.toLowerCase()) {
