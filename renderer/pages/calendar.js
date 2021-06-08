@@ -33,7 +33,7 @@ export default function CalendarComponent() {
           </svg>
         </Link>
       </div>
-      <div className='max-w-5xl mx-auto dark text-indigo-400'>
+      <div className='max-w-5xl mx-auto dark text-indigo-300'>
         <Calendar 
           events={[
             {
