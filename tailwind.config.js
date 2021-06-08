@@ -149,7 +149,7 @@ module.exports = {
               border: colors.gray[600]
             },
             primary: {
-              background: colors.indigo[100],
+              background: 'transparent',
               border: colors.indigo[600]
             },
             secondary: {

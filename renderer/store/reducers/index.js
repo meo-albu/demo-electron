@@ -2,7 +2,7 @@ import {combineReducers} from 'redux'
 import {mailReducer} from './mailReducer'
 
 const rootReducer = combineReducers({
-  mailReducer
+  mailReducer,
 })
 
 export default rootReducer

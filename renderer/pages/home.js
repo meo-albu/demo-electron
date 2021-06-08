@@ -6,10 +6,12 @@ import Sidebar from '../components/Sidebar/Sidebar'
 import TitleBar from '../components/TitleBar/TitleBar'
 import { setActiveMail } from '../store/actions/mailActions'
 
-import {Input, Avatar} from '@driven-crm/ui'
+import {Input, Avatar, Modal} from '@driven-crm/ui'
+import Settings from '../components/Settings/Settings'
 
 function Home() {
   const [open, setOpen] = useState(true)
+  const [modal, setModal] = useState(false)
 
   const dispatch = useDispatch()
   const {active, mails, activeMail} = useSelector(state => state.mailReducer)
@@ -36,8 +38,8 @@ function Home() {
         </div>
       </TitleBar>
 
-      <div className='overflow-y-hidden flex flex-col flex-grow bg-gray-900'>
-        <div className='p-2 px-6 border-b border-gray-600 flex items-center justify-between'>
+      <div className='overflow-y-hidden flex flex-col flex-grow bg-gray-900 dark'>
+        <div className='p-2 pl-6 border-b border-gray-600 flex items-center justify-between'>
           <button className='text-white focus:outline-none' onClick={() => setOpen(prev => !prev)}>
             {
               open 
@@ -61,7 +63,15 @@ function Home() {
 
           </div>
 
-          <Avatar src='https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80' />
+          <div onClick={() => setModal(true)} className='flex items-center hover:bg-gray-50 hover:bg-opacity-5 cursor-pointer rounded-full pr-3 space-x-2'>
+            <Avatar src='https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80' />
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+            </svg>
+          </div>
+          <Modal size='full' isOpen={modal} onClose={() => setModal(false)} >
+            <Settings closeSettings={() => setModal(false)} />
+          </Modal>
         </div>
 
         <div className='overflow-y-hidden flex h-full'>
