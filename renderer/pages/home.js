@@ -6,6 +6,8 @@ import Sidebar from '../components/Sidebar/Sidebar'
 import TitleBar from '../components/TitleBar/TitleBar'
 import { setActiveMail } from '../store/actions/mailActions'
 
+import {Input, Avatar} from '@driven-crm/ui'
+
 function Home() {
   const [open, setOpen] = useState(true)
 
@@ -48,7 +50,18 @@ function Home() {
             }
           </button>
 
-          <input className='px-4 py-1 bg-transparent border border-gray-800 focus:border-gray-600 focus:outline-none w-1/3' placeholder='Search' />
+          <div className='w-96 ml-auto mr-6'>
+            <Input placeholder='Search' size='mini' startEnhancer={() => {
+              return (
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
+                </svg>
+              )
+            }} />
+
+          </div>
+
+          <Avatar src='https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80' />
         </div>
 
         <div className='overflow-y-hidden flex h-full'>
