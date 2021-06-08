@@ -68,7 +68,6 @@ const openSettings = () => {
   } else {
     const port = process.argv[2];
     await windows.mainWindow.loadURL(`http://localhost:${port}/home`);
-    windows.mainWindow.webContents.openDevTools()
   }
 
   Menu.setApplicationMenu(mainMenu)

@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setActiveMail, setMailList } from '../../store/actions/mailActions'
 import Modal from '../Modal/Modal'
 
+import Link from 'next/link'
+
 export default function Sidebar({
     open
   }) {
@@ -25,7 +27,7 @@ export default function Sidebar({
       leaveTo="transform -translate-x-full"
     >
       <div className='w-28 bg-gray-800 bg-opacity-20 h-full border-r border-gray-800'>
-        <ul className='text-xs space-y-3'>
+        <ul className='text-xs space-y-3 h-full flex flex-col pb-6'>
           <li
             onClick={() => setModal(true)} 
             className='p-2 px-3 mb-6 bg-indigo-700 bg-opacity-80 hover:bg-opacity-60 cursor-pointer flex items-center space-x-2'>
@@ -51,10 +53,19 @@ export default function Sidebar({
               )
             })
           }
+          <li className='bg-gray-700 bg-opacity-0 hover:bg-opacity-50 cursor-pointer !mt-auto'>
+            <Link href='/board'>
+              <span className='py-2 px-4 bg-indigo-500 block'>Board</span>
+            </Link>
+          </li>
+          <li className='bg-gray-700 bg-opacity-0 hover:bg-opacity-50 cursor-pointer'>
+            <Link href='/calendar'>
+              <span className='py-2 px-4 block'>Calendar</span>
+            </Link>
+          </li>
         </ul>
         <div className='fixed right-0 bottom-0'>
           <Modal open={modal} onClose={setModal} />
-
         </div>
       </div>
     </Transition>
